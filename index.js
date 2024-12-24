@@ -35,11 +35,17 @@ function createCoin(x, y) {
 	})
 }
 
-function handleClick(event) {
-	clickCount++
-	rapidClickCount++
+function handleTouch(event) {
+	event.preventDefault()
 
-	createCoin(event.clientX, event.clientY)
+	const touches = event.touches
+	for (let i = 0; i < touches.length; i++) {
+		const touch = touches[i]
+		clickCount++
+		rapidClickCount++
+
+		createCoin(touch.clientX, touch.clientY)
+	}
 
 	clearTimeout(clickTimer)
 	clearTimeout(rapidClickTimer)
@@ -93,4 +99,11 @@ function handleClick(event) {
 	}, 250)
 }
 
-hamster.addEventListener('click', handleClick)
+document.body.addEventListener('touchstart', handleTouch, { passive: false })
+document.body.addEventListener('click', event => {
+	createCoin(event.clientX, event.clientY)
+	handleTouch({
+		preventDefault: () => {},
+		touches: [{ clientX: event.clientX, clientY: event.clientY }],
+	})
+})
