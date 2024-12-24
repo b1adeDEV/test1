@@ -3,6 +3,8 @@ body {
     padding: 0;
     min-height: 100vh;
     background: url('./bg_img.jpg') center/cover no-repeat fixed;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
 .container {
@@ -22,6 +24,9 @@ body {
     cursor: pointer;
     position: relative;
     z-index: 2;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
 }
 
 .hamster.slightly-expanded {
