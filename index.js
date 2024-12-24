@@ -49,6 +49,7 @@ function handleTouch(event) {
 
 	clearTimeout(clickTimer)
 	clearTimeout(rapidClickTimer)
+	clearTimeout(clickTimeout)
 
 	let currentScale = '0.8'
 	if (hamster.classList.contains('super-expanded')) {
@@ -66,7 +67,7 @@ function handleTouch(event) {
 		newScale = '1.15'
 		hamster.classList.remove('slightly-expanded', 'medium-expanded', 'expanded')
 		hamster.classList.add('super-expanded')
-	} else if (rapidClickCount >= 5 && currentScale !== '1.15') {
+	} else if (rapidClickCount >= 5 && currentScale < '1.15') {
 		newScale = '1.0'
 		hamster.classList.remove(
 			'slightly-expanded',
@@ -74,11 +75,11 @@ function handleTouch(event) {
 			'super-expanded'
 		)
 		hamster.classList.add('expanded')
-	} else if (clickCount >= 3 && currentScale < '0.95') {
+	} else if (clickCount >= 3 && currentScale < '1.0') {
 		newScale = '0.95'
 		hamster.classList.remove('slightly-expanded', 'expanded', 'super-expanded')
 		hamster.classList.add('medium-expanded')
-	} else if (currentScale < '0.85') {
+	} else if (currentScale === '0.8') {
 		newScale = '0.85'
 		hamster.classList.remove('medium-expanded', 'expanded', 'super-expanded')
 		hamster.classList.add('slightly-expanded')
@@ -89,8 +90,6 @@ function handleTouch(event) {
 	hamster.classList.remove('clicked')
 	void hamster.offsetWidth
 	hamster.classList.add('clicked')
-
-	clearTimeout(clickTimeout)
 
 	clickTimeout = setTimeout(() => {
 		clickCount = 0
