@@ -52,7 +52,7 @@ function handleTouch(event) {
 
 	let currentScale = '0.8'
 	if (hamster.classList.contains('super-expanded')) {
-		currentScale = '1.05'
+		currentScale = '1.15'
 	} else if (hamster.classList.contains('expanded')) {
 		currentScale = '1.0'
 	} else if (hamster.classList.contains('medium-expanded')) {
@@ -63,10 +63,10 @@ function handleTouch(event) {
 
 	let newScale = currentScale
 	if (rapidClickCount >= 8) {
-		newScale = '1.05'
+		newScale = '1.15'
 		hamster.classList.remove('slightly-expanded', 'medium-expanded', 'expanded')
 		hamster.classList.add('super-expanded')
-	} else if (rapidClickCount >= 5 && currentScale !== '1.05') {
+	} else if (rapidClickCount >= 5 && currentScale !== '1.15') {
 		newScale = '1.0'
 		hamster.classList.remove(
 			'slightly-expanded',
